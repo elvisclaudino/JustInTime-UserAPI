@@ -1,5 +1,7 @@
 using JustInTimeUser.API.Filters;
 using JustInTimeUser.API.Middleware;
+using JustInTimeUser.Application;
+using JustInTimeUser.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddMvc(opt => opt.Filters.Add(typeof(ExceptionFilter)));
+
+builder.Services.AddApplication();
+builder.Services.AddInfrastructure();
 
 var app = builder.Build();
 

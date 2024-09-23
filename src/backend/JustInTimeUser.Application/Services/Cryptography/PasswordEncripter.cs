@@ -4,7 +4,7 @@ using System.Text;
 namespace JustInTimeUser.Application.Services.Cryptography;
 public class PasswordEncripter
 {
-    public static string Encrypt(string password)
+    public string Encrypt(string password)
     {
         var chaveAdicional = "ABC";
 

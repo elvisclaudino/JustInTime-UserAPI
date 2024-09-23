@@ -15,7 +15,7 @@ public static class DependencyInjectionExtension
 
     private static void AddDbContext(IServiceCollection services)
     {
-        var connectionString = "Server=localhost;Database=justintime_user;Uid=root;Pwd=admin;";
+        var connectionString = "Server=localhost;Database=justintimeusers;Uid=root;Pwd=admin;";
         var serverVersion = new MySqlServerVersion(new Version(8, 0, 39));
 
         services.AddDbContext<JustInTimeUserDbContext>(dbContextOptions =>
@@ -27,5 +27,6 @@ public static class DependencyInjectionExtension
     private static void AddRepositories(IServiceCollection services)
     {
         services.AddScoped<IUserWriteOnlyRepository, UserRepository>();
+        services.AddScoped<IUserReadOnlyRepository, UserRepository>();
     }
 }
