@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <InvariantGlobalization>true</InvariantGlobalization>
+    <InvariantGlobalization>false</InvariantGlobalization>
     <UserSecretsId>11619508-1553-4f2a-a657-a4ae8b342b6c</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..\..</DockerfileContext>
@@ -21,7 +21,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\shared\JustInTimeUser.Communication\JustInTimeUser.Communication.csproj" />
+    <ProjectReference Include="..\..\shared\JustInTimeUser.Exceptions\JustInTimeUser.Exceptions.csproj" />
     <ProjectReference Include="..\JustInTimeUser.Application\JustInTimeUser.Application.csproj" />
+    <ProjectReference Include="..\JustInTimeUser.Infrastructure\JustInTimeUser.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
