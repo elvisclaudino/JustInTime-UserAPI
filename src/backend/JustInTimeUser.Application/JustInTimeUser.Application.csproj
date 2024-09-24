@@ -6,4 +6,16 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\shared\JustInTimeUser.Communication\JustInTimeUser.Communication.csproj" />
+    <ProjectReference Include="..\..\shared\JustInTimeUser.Exceptions\JustInTimeUser.Exceptions.csproj" />
+    <ProjectReference Include="..\JustInTime.Domain\JustInTimeUser.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="FluentValidation" Version="11.10.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+  </ItemGroup>
+
 </Project>
