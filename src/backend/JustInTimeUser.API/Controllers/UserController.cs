@@ -6,15 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 namespace JustInTimeUser.API.Controllers;
 [Route("[controller]")]
 [ApiController]
-public class UserController : ControllerBase
-{
+public class UserController : ControllerBase 
+{ 
     [HttpPost]
-    [ProducesResponseType(typeof(ResponseRegisteredUserJson), StatusCodes.Status200OK)]
-    public IActionResult Register(RequestRegisterUserJson request)
+    [ProducesResponseType(typeof(ResponseRegisteredUserJson), StatusCodes.Status201Created)]
+    public async Task<IActionResult> Register(
+        [FromBody] RequestRegisterUserJson request,
+        [FromServices] IRegisterUserUseCase useCase)
     {
-        var useCase = new RegisterUserUseCase();
-
-        var result = useCase.Execute(request);
+        var result = await useCase.Execute(request);
 
         return Created(string.Empty, result);
     }
