@@ -2,6 +2,7 @@
 using JustInTimeUser.Application.Services.Cryptography;
 using JustInTimeUser.Communication.Requests;
 using JustInTimeUser.Communication.Responses;
+using JustInTimeUser.Domain.Repositories;
 using JustInTimeUser.Domain.Repositories.User;
 using JustInTimeUser.Exceptions.ExceptionsBase;
 
@@ -10,18 +11,21 @@ public class RegisterUserUseCase : IRegisterUserUseCase
 {
     private readonly IUserWriteOnlyRepository _writeOnlyRepository;
     private readonly IUserReadOnlyRepository _readOnlyRepository;
+    private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
     private readonly PasswordEncripter _passwordEncripter;
 
     public RegisterUserUseCase(
         IUserWriteOnlyRepository writeOnlyRepository,
         IUserReadOnlyRepository readOnlyRepository,
+        IUnitOfWork unitOfWork,
         IMapper mapper,
         PasswordEncripter passwordEncripter
         )
     {
         _writeOnlyRepository = writeOnlyRepository;
         _readOnlyRepository = readOnlyRepository;
+        _unitOfWork = unitOfWork;
         _mapper = mapper;
         _passwordEncripter = passwordEncripter;
     }
@@ -32,16 +36,14 @@ public class RegisterUserUseCase : IRegisterUserUseCase
         Validate(request);
 
         // Mapping request to entity
-
-
         var user = _mapper.Map<Domain.Entitities.User>(request);
 
         // Password Cryptography
         user.Password = _passwordEncripter.Encrypt(request.Password);
 
-
         // Save into database
         await _writeOnlyRepository.Add(user);
+        await _unitOfWork.Commit();
 
         return new ResponseRegisteredUserJson
         {

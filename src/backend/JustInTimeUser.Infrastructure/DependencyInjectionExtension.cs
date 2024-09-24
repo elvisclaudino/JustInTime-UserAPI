@@ -1,4 +1,5 @@
-﻿using JustInTimeUser.Domain.Repositories.User;
+﻿using JustInTimeUser.Domain.Repositories;
+using JustInTimeUser.Domain.Repositories.User;
 using JustInTimeUser.Infrastructure.DataAccess;
 using JustInTimeUser.Infrastructure.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,8 @@ public static class DependencyInjectionExtension
 
     private static void AddRepositories(IServiceCollection services)
     {
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+
         services.AddScoped<IUserWriteOnlyRepository, UserRepository>();
         services.AddScoped<IUserReadOnlyRepository, UserRepository>();
     }
