@@ -8,6 +8,8 @@
     <UserSecretsId>11619508-1553-4f2a-a657-a4ae8b342b6c</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..\..</DockerfileContext>
+	 <OutputType>Exe</OutputType>
+	  <!-- Mantenha isso para indicar que é um executável -->
   </PropertyGroup>
 
   <ItemGroup>
